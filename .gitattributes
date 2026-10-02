@@ -1,0 +1,3 @@
+# LF everywhere, on every machine. Without this, a note saved on Windows comes back
+# with CRLF line endings, and the whole file shows as changed in the next diff.
+* text=auto eol=lf
