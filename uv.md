@@ -12,8 +12,11 @@
 
 ## Pin the interpreter before the first sync on a machine
 - Symptom: the venv builds on a different Python than the image or CI (Homebrew Python was two minor versions ahead)
-- Rule: `uv python pin <version>` writes `.python-version`. Commit it before anyone runs `uv sync` on a new machine.
-- Seen: application-pipeline, 2026-09 · verified
+- Rule: `uv python pin <version>` writes `.python-version`. Commit it before anyone runs `uv sync` on a new machine. If a system Python (Homebrew's, say) has the same minor version as the pin, pinning isn't enough: set `[tool.uv] python-preference = "only-managed"` in `pyproject.toml` before the first `uv add` or `uv sync`, and uv downloads a managed build instead.
+- Why: under the default preference, `managed`, uv uses a matching system interpreter when no managed one is installed yet, rather than downloading one.
+- Seen: application-pipeline, 2026-09 · verified. The same-minor-version half: private project, 2026-10 · uv 0.11.8 · unverified (taken from uv's documented preference order; `only-managed` was set before the first `uv add`, so the fallback wasn't reproduced)
+- Recheck: uv 1.0
+- Source: https://docs.astral.sh/uv/concepts/python-versions/
 
 ## Declare and resolve in separate commits
 - Rule: commit `pyproject.toml` (what the project asks for) apart from `uv.lock` (what resolved). Reading them together hides which one moved a version.

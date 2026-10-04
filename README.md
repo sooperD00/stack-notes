@@ -20,6 +20,9 @@ Keep this clone beside your projects, never inside one. Give a session access wi
 | File | Covers |
 |------|--------|
 | [uv.md](uv.md) | Python environments, pinning, locks |
+| [python.md](python.md) | The standard library: enums, regex |
+| [pydantic.md](pydantic.md) | Strict models, validators, JSON input, field metadata |
+| [numpy.md](numpy.md) | Scalars at the edge of NumPy code |
 | [pnpm-node.md](pnpm-node.md) | pnpm, Node versions, vitest |
 | [sqlmodel-alembic.md](sqlmodel-alembic.md) | SQLModel sessions, Alembic autogenerate, test databases |
 | [react.md](react.md) | React and its types |
